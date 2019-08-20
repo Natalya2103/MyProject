@@ -41,11 +41,23 @@
       "frameworks": {
         "netstandard2.0": {
           "dependencies": {
+            "Autofac": {
+              "target": "Package",
+              "version": "[4.9.4, )"
+            },
+            "FluentNHibernate": {
+              "target": "Package",
+              "version": "[2.1.2, )"
+            },
             "NETStandard.Library": {
               "suppressParent": "All",
               "target": "Package",
               "version": "[2.0.3, )",
               "autoReferenced": true
+            },
+            "NHibernate": {
+              "target": "Package",
+              "version": "[5.2.5, )"
             }
           },
           "imports": [
