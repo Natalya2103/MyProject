@@ -33,6 +33,12 @@ namespace Models
             containerBuilder.Register(x => x.Resolve<ISessionFactory>().OpenSession())
                     .As<ISession>();
 
+            //-----
+
+            var role = new Role
+            {
+                RoleName = "Admin"
+            };
         }
     }
 }

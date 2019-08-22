@@ -5,11 +5,11 @@ namespace Models
 {
     public class User
     {
-        public long Id { get; set; }
-        public string Login { get; set; }
-        public string Password { get; set; }
-        public string FIO { get; set; }
-        public UserGroup Group { get; set; }
+        public virtual long Id { get; set; }
+        public virtual string Login { get; set; }
+        public virtual string Password { get; set; }
+        public virtual string FIO { get; set; }
+        public virtual UserGroup Group { get; set; }
     }
 
     public class UserMap : ClassMap<User> 
@@ -20,7 +20,7 @@ namespace Models
             Map(u => u.FIO).Length(100);
             Map(u => u.Login).Length(30);
             Map(u => u.Password).Length(30);
-            HasOne(u => u.Group);
+            References(u => u.Group).Cascade.SaveUpdate();
         }
     }
 }

@@ -12,7 +12,7 @@ namespace Models
         public User Author { get; set; }
         public Folder Folder { get; set; }
     }
-    public class DocumentMap : ClassMap<Document>
+    public class DocumentMap : SubClassMap<Document>
     {
         public DocumentMap()
         {
