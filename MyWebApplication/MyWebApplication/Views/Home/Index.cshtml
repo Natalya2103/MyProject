@@ -1,0 +1,28 @@
+﻿@using MyWebApplication.Models
+@model HomeModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    ViewBag.Title = Model.Title;
+
+}
+
+@using (Html.BeginForm())
+{
+    <div>
+        @Html.DisplayNameFor(m => m.Title)
+    </div>
+    <div>
+        @Html.EditorFor(m => m.Title)
+        @Html.HiddenFor(m => m.Time)
+    </div>
+    <div>
+        <input type="submit" value="Отправить" />
+    </div>
+}
+<h2>@Model.Time</h2>
+
+@Html.ActionLink("Создать пользователя", "Create", "User")
+<br/>
+@Html.ActionLink("Создать группу", "Create", "UserGroup")

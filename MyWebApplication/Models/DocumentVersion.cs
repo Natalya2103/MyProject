@@ -7,11 +7,11 @@ namespace Models
 {
     public class DocumentVersion
     {
-        public long Id { get; set; }
-        public string File { get; set; }
-        public User Author { get; set; }
-        public DateTime CreateDate { get; set; }
-        public Document Document {get; set;}
+        public virtual long Id { get; set; }
+        public virtual byte[] FileContent { get; set; }
+        public virtual User Author { get; set; }
+        public virtual DateTime CreateDate { get; set; }
+        public virtual Document Document {get; set;}
     }
 
     public class DocumentVersionMap : ClassMap<DocumentVersion>
@@ -19,10 +19,10 @@ namespace Models
         public DocumentVersionMap()
         {
             Id(u => u.Id).GeneratedBy.HiLo("100L");
-            Map(u => u.File).Length(200);
-            HasOne(u => u.Author);
-            Map(u => u.CreateDate);
-            HasOne(u => u.Document);
+            Map(u => u.FileContent).Length(200);
+            References(u => u.Author).Cascade.SaveUpdate();
+            Map(u => u.CreateDate);          
+            References(u => u.Document).Cascade.SaveUpdate();
         }
     }
 }

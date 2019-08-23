@@ -16,10 +16,11 @@ namespace Models
     {
         public UserMap()
         {
+            //Table("TableUser");
             Id(u => u.Id).GeneratedBy.HiLo("100L"); 
             Map(u => u.FIO).Length(100);
             Map(u => u.Login).Length(30);
-            Map(u => u.Password).Length(30);
+            Map(u => u.Password).Length(500);
             References(u => u.Group).Cascade.SaveUpdate();
         }
     }

@@ -35,10 +35,7 @@ namespace Models
 
             //-----
 
-            var role = new Role
-            {
-                RoleName = "Admin"
-            };
+            
         }
     }
 }

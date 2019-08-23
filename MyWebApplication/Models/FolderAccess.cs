@@ -7,20 +7,22 @@ namespace Models
 {
     public class FolderAccess
     {
-        public Folder Folder { get; set; }
-        public string Permission { get; set; }
-        public UserGroup UserGroup { get; set; }
-        public User User { get; set; }
+        public virtual long Id { get; set; }
+        public virtual Folder Folder { get; set; }
+        public virtual string Permission { get; set; }
+        public virtual UserGroup UserGroup { get; set; }
+        public virtual User User { get; set; }
     }
 
     public class FolderAccessMap : ClassMap<FolderAccess>
     {
         public FolderAccessMap()
         {
-            HasOne(u => u.Folder);
+            Id(u => u.Id).GeneratedBy.HiLo("100L");
+            References(u => u.Folder).Cascade.Delete();
             Map(u => u.Permission).Length(100);
-            HasOne(u => u.UserGroup);
-            HasOne(u => u.User);
+            References(u => u.UserGroup).Cascade.Delete();
+            References(u => u.User).Cascade.Delete();
         }
     }
 }

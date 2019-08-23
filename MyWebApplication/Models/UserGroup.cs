@@ -20,7 +20,7 @@ namespace Models
         {
             Id(u => u.Id).GeneratedBy.HiLo("100L");
             Map(u => u.GroupName).Length(100);
-            HasMany(u => u.Users).AsList().Inverse();
+            HasMany(u => u.Users).Inverse();
         }
     }
 }

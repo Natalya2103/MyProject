@@ -5,21 +5,19 @@ using System.Text;
 
 namespace Models
 {
-    public class Document
+    public class Document: Folder
     {
-        public string DocumentType { get; set; }
-        public DateTime CreateDate { get; set; }
-        public User Author { get; set; }
-        public Folder Folder { get; set; }
+        public virtual string DocumentType { get; set; }
+        public virtual DateTime CreateDate { get; set; }
+        public virtual User Author { get; set; }
     }
-    public class DocumentMap : SubClassMap<Document>
+    public class DocumentMap : SubclassMap<Document>
     {
         public DocumentMap()
         {
             Map(u => u.DocumentType).Length(50);
             Map(u => u.CreateDate);
-            HasOne(u => u.Author);
-            HasOne(u => u.Folder);
+            References(u => u.Author).Cascade.SaveUpdate();
         }
     }
 }
