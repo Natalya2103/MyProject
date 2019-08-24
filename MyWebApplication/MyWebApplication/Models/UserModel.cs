@@ -1,4 +1,4 @@
-﻿using Models;
+﻿using ModelsDAL;
 using MyWebApplication.Validation;
 using System;
 using System.Collections.Generic;
@@ -32,6 +32,12 @@ namespace MyWebApplication.Models
 
         [Required]
         [DisplayName("Группа")]
-        public  string UserGroup { get; set; }
+        public string UserGroup { get; set; }
+        [Required]
+        [EmailAddress]
+        public string Email { get; set; }
+
+        [DisplayName("Возраст")]
+        public int Age { get; set; }
     }
 }

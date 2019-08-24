@@ -1,5 +1,6 @@
-﻿using Models;
-using Models.Repositories;
+﻿using ModelsDAL;
+using ModelsDAL.Filters;
+using ModelsDAL.Repositories;
 using MyWebApplication.Models;
 using System;
 using System.Collections.Generic;
@@ -48,11 +49,21 @@ namespace MyWebApplication.Controllers
                 FIO = model.FIO,
                 Login = model.Login,
                 Password = model.Password,
-                Group = userGroupRepository.Get(Convert.ToInt64(model.UserGroup)) ?? null
+                UserGroup = userGroupRepository.Get(Convert.ToInt64(model.UserGroup)) ?? null,
+                CreationDate = DateTime.Now,
+                Age = model.Age,
+                Email = model.Email
             };
             userRepository.Save(user);
             return RedirectToAction("Index", "Home");
-            //return View(model);
+        }
+        public ActionResult List(UserFilter filter)
+        {
+            var model = new UserListModel
+            {
+                Items = userRepository.Find(filter)
+            };
+            return View(model);
         }
     }
 }

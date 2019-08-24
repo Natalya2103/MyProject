@@ -1,0 +1,10 @@
+﻿@model ModelsDAL.Filters.UserFilter
+
+@using (Html.BeginForm())
+{
+    <div>
+        @Html.EditorFor(m => m.SearchString)
+        <input type="submit" value="Поиск" />
+    </div>
+}
+

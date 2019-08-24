@@ -2539,9 +2539,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\GitHub\\_Projects\\MyProject\\MyWebApplication\\Models\\Models.csproj",
-      "projectName": "Models",
-      "projectPath": "D:\\GitHub\\_Projects\\MyProject\\MyWebApplication\\Models\\Models.csproj",
+      "projectUniqueName": "D:\\GitHub\\_Projects\\MyProject\\MyWebApplication\\Models\\ModelsDAL.csproj",
+      "projectName": "ModelsDAL",
+      "projectPath": "D:\\GitHub\\_Projects\\MyProject\\MyWebApplication\\Models\\ModelsDAL.csproj",
       "packagesPath": "C:\\Users\\Natalya\\.nuget\\packages\\",
       "outputPath": "D:\\GitHub\\_Projects\\MyProject\\MyWebApplication\\Models\\obj\\",
       "projectStyle": "PackageReference",

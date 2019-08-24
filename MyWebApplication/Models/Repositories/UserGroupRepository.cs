@@ -1,4 +1,5 @@
-﻿using Models;
+﻿using ModelsDAL;
+using ModelsDAL.Filters;
 using NHibernate;
 using System;
 using System.Collections.Generic;
@@ -6,10 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Models.Repositories
+namespace ModelsDAL.Repositories
 {
     [Repository]
-    public class UserGroupRepository : Repository<UserGroup>
+    public class UserGroupRepository : Repository<UserGroup, UserGroupFilter>
     {
         public UserGroupRepository(ISession session)
             : base(session)

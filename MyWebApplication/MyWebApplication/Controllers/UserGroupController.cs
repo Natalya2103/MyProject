@@ -1,5 +1,5 @@
-﻿using Models;
-using Models.Repositories;
+﻿using ModelsDAL;
+using ModelsDAL.Repositories;
 using MyWebApplication.Models;
 using System;
 using System.Collections.Generic;

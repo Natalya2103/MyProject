@@ -91,12 +91,12 @@ D:\GitHub\_Projects\MyProject\MyWebApplication\MyWebApplication\obj\Debug\MyWebA
 D:\GitHub\_Projects\MyProject\MyWebApplication\MyWebApplication\bin\Antlr3.Runtime.dll
 D:\GitHub\_Projects\MyProject\MyWebApplication\MyWebApplication\bin\FluentNHibernate.dll
 D:\GitHub\_Projects\MyProject\MyWebApplication\MyWebApplication\bin\Iesi.Collections.dll
-D:\GitHub\_Projects\MyProject\MyWebApplication\MyWebApplication\bin\Models.dll
 D:\GitHub\_Projects\MyProject\MyWebApplication\MyWebApplication\bin\NHibernate.dll
 D:\GitHub\_Projects\MyProject\MyWebApplication\MyWebApplication\bin\Remotion.Linq.EagerFetching.dll
-D:\GitHub\_Projects\MyProject\MyWebApplication\MyWebApplication\bin\Models.pdb
 D:\GitHub\_Projects\MyProject\MyWebApplication\MyWebApplication\bin\Antlr3.Runtime.xml
 D:\GitHub\_Projects\MyProject\MyWebApplication\MyWebApplication\bin\FluentNHibernate.xml
 D:\GitHub\_Projects\MyProject\MyWebApplication\MyWebApplication\bin\Iesi.Collections.xml
 D:\GitHub\_Projects\MyProject\MyWebApplication\MyWebApplication\bin\NHibernate.xml
 D:\GitHub\_Projects\MyProject\MyWebApplication\MyWebApplication\bin\Remotion.Linq.EagerFetching.xml
+D:\GitHub\_Projects\MyProject\MyWebApplication\MyWebApplication\bin\ModelsDAL.dll
+D:\GitHub\_Projects\MyProject\MyWebApplication\MyWebApplication\bin\ModelsDAL.pdb

@@ -11,8 +11,6 @@ namespace MyWebApplication
     {
         protected void Application_Start()
         {
-
-
         }
     }
 }

@@ -17,8 +17,8 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using MyWebApplication.App_Start;
 using MyWebApplication.Controllers;
-using Models;
-using Models.Repositories;
+using ModelsDAL;
+using ModelsDAL.Repositories;
 
 [assembly: OwinStartup(typeof(Startup))]
 namespace MyWebApplication.App_Start
