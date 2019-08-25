@@ -1,4 +1,5 @@
 ﻿using ModelsDAL;
+using MyWebApplication.Validation;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,6 +12,7 @@ namespace MyWebApplication.Models
     public class UserGroupModel : EntityModel<UserGroup>
     {
         [Required]
+        [GroupName]
         [DisplayName("Название группы")]
         public string GroupName { get; set; }
     }

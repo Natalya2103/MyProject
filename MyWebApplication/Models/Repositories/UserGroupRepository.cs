@@ -1,6 +1,7 @@
 ﻿using ModelsDAL;
 using ModelsDAL.Filters;
 using NHibernate;
+using NHibernate.Criterion;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,5 +28,13 @@ namespace ModelsDAL.Repositories
             return session.Get<UserGroup>(userGroupId);
         }
 
+        public bool Exists(string groupName)
+        {
+            var crit = session.CreateCriteria<UserGroup>()
+                .Add(Restrictions.Eq("GroupName", groupName))
+                .SetProjection(Projections.Count("Id"));
+            var count = Convert.ToInt64(crit.UniqueResult());
+            return count > 0;
+        }
     }
 }

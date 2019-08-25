@@ -1,0 +1,16 @@
+﻿@using ModelsDAL.Filters
+@model MyWebApplication.Models.FolderListModel
+@{
+    ViewBag.Title = "Список папок";
+}
+
+<h2>Список папок</h2>
+
+<p>
+    @Html.ActionLink("Добавить", "Create")
+</p>
+<p>
+    @Html.Partial("Filter", new FolderFilter())
+</p>
+<div style="height:20px;"></div>
+@Html.Partial("Grid", Model.Items)

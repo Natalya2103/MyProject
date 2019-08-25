@@ -1,4 +1,5 @@
 ﻿using FluentNHibernate.Mapping;
+using ModelsDAL.Filters;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,6 +9,7 @@ namespace ModelsDAL
     public class Folder
     {
         public virtual long Id { get; set; }
+        [FastSearch]
         public virtual string FolderName { get; set; }
         public virtual Folder ParentFolder { get; set; }
     }
