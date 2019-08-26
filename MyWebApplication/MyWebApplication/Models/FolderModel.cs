@@ -14,7 +14,6 @@ namespace MyWebApplication.Models
         [DisplayName("Название папки")]
         public virtual string FolderName { get; set; }
 
-        [DisplayName("Путь")]
-        public virtual Folder ParentFolder { get; set; }
+        public virtual string ParentFolderId { get; set; }
     }
 }

@@ -11,5 +11,7 @@ namespace MyWebApplication.Models
     {
         [DisplayName("Путь")]
         public string FolderParentPath { get; set; }
+
+        public string FolderParentId { get; set; }
     }
 }
