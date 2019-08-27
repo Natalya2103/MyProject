@@ -18,6 +18,7 @@
 @Html.Partial("Grid", Model.Items, new ViewDataDictionary {
     { "Parent", Model.FolderParent },
     { "IsRootFolder", Model.IsRootFolder },
+    { "CurrentFolderId", Model.CurrentFolder != null ? Model.CurrentFolder.Id : (long?)null }
 })
 
 <p>

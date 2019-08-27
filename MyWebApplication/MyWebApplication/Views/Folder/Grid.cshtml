@@ -1,4 +1,5 @@
 ﻿@using ModelsDAL
+@using MyWebApplication.Extensions
 @model IEnumerable<ModelsDAL.Folder>
 
 @{
@@ -9,10 +10,11 @@
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.FolderName)
+                @Html.SortLink("Название", "FolderName", "Index", "Folder", null)
+                @*@Html.DisplayNameFor(model => model.FolderName)*@
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CreationDate)
+                @Html.SortLink("Дата создания", "CreationDate", "Index", "Folder", null)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.CreationAuthor)

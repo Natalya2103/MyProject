@@ -50,7 +50,7 @@ namespace MyWebApplication.Controllers
             return RedirectToAction("Index", new { parent = model.ParentFolderId });
         }
         
-        public ActionResult Index(long? parent)
+        public ActionResult Index(long? parent, FetchOptions fetchOptions)
         {
             Folder parentFolder = null;
             if (parent.HasValue)
@@ -59,7 +59,7 @@ namespace MyWebApplication.Controllers
             }
             var model = new FolderListModel
             {
-                Items = folderRepository.Find(new FolderFilter { ParentFolderId = parentFolder != null ? parentFolder.Id : (long?)null}),
+                Items = folderRepository.Find(new FolderFilter { ParentFolderId = parentFolder != null ? parentFolder.Id : (long?)null}, fetchOptions),
                 CurrentFolder = parentFolder,
                 FolderParent = parentFolder != null ? parentFolder.ParentFolder : null
             };

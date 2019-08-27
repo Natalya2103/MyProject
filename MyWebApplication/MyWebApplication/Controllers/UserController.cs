@@ -1,9 +1,11 @@
 ﻿using ModelsDAL;
 using ModelsDAL.Filters;
 using ModelsDAL.Repositories;
+using MyWebApplication.Files;
 using MyWebApplication.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -52,7 +54,10 @@ namespace MyWebApplication.Controllers
                 UserGroup = userGroupRepository.Get(Convert.ToInt64(model.UserGroup)) ?? null,
                 CreationDate = DateTime.Now,
                 Age = model.Age,
-                Email = model.Email
+                Email = model.Email,
+                Avatar = model.Avatar != null && model.Avatar.InputStream != null
+                            ? model.Avatar.InputStream.ToByteArray()
+                            : null
             };
             userRepository.Save(user);
             return RedirectToAction("Index", "Home");
@@ -64,6 +69,11 @@ namespace MyWebApplication.Controllers
                 Items = userRepository.Find(filter)
             };
             return View(model);
+        }
+        public ActionResult GetAvatar(long id)
+        {
+            var user = userRepository.Load(id);
+            return File(user.Avatar, "application/octet-stream", $"{user.Login}.jpeg");
         }
     }
 }

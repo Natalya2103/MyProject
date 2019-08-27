@@ -185,10 +185,13 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />
+    <Compile Include="Controllers\BinaryFileController.cs" />
     <Compile Include="Controllers\FolderController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\UserGroupController.cs" />
+    <Compile Include="Extensions\HtmlExtensions.cs" />
+    <Compile Include="Files\StreamHelper.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -197,6 +200,7 @@
     <Compile Include="Models\FolderListModel.cs" />
     <Compile Include="Models\FolderModel.cs" />
     <Compile Include="Models\HomeModel.cs" />
+    <Compile Include="Models\SortLinkModel.cs" />
     <Compile Include="Models\UserGroupModel.cs" />
     <Compile Include="Models\UserListModel.cs" />
     <Compile Include="Models\UserModel.cs" />
@@ -232,6 +236,7 @@
     <Content Include="Views\Folder\List.cshtml" />
     <Content Include="Views\Folder\Grid.cshtml" />
     <Content Include="Views\Folder\Filter.cshtml" />
+    <Content Include="Views\Shared\SortLink.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -241,6 +246,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\images\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Models\ModelsDAL.csproj">

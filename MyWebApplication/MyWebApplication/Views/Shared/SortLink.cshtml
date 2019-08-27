@@ -1,0 +1,22 @@
+﻿@using ModelsDAL
+@model MyWebApplication.Models.SortLinkModel
+
+@{
+    var currentFolderId = ViewData["CurrentFolderId"];
+    if (currentFolderId != null) { Model.RouteValues.Add("parent", currentFolderId); }
+}
+
+<a href="@Url.Action(Model.Action, Model.Controller, Model.RouteValues)">
+    @Model.LinkText
+    @if (Model.SortDirection.HasValue)
+    {
+        if (Model.SortDirection.Value == ModelsDAL.Filters.SortDirection.Asc)
+        {
+            <img src="~/Content/images/up.png" />
+        }
+        else
+        {
+            <img src="~/Content/images/down.png" />
+        }
+    }
+</a>

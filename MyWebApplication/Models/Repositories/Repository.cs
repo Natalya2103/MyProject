@@ -38,19 +38,40 @@ namespace ModelsDAL.Repositories
                 catch (Exception ex)
                 {
                     tran.Rollback();
+                    throw;
                 }
             }
         } 
-        public virtual IList<T> Find (F filter)
+        public virtual IList<T> Find (F filter, FetchOptions fetchOptions = null) //если не передали то null
         {
             var crit = session.CreateCriteria<T>();
             if (filter != null)
             {
                 SetupFilter(crit, filter);
             }
+            if (fetchOptions != null)
+            {
+                SetupFetchOptions(crit, fetchOptions);
+            }
             return crit.List<T>();
         }
-
+        protected virtual void SetupFetchOptions (ICriteria crit, FetchOptions fetchOptions)
+        {
+            if (!string.IsNullOrEmpty(fetchOptions.SortExpression))
+            {
+                crit.AddOrder(fetchOptions.SortDirection == SortDirection.Asc ?
+                    Order.Asc(fetchOptions.SortExpression) :
+                    Order.Desc(fetchOptions.SortExpression));
+            }
+            if (fetchOptions.First != null)
+            {
+                crit.SetFirstResult(fetchOptions.First.Value);
+            }
+            if (fetchOptions.Count != null)
+            {
+                crit.SetMaxResults(fetchOptions.Count.Value);
+            }
+        }
         protected virtual void SetupFilter(ICriteria crit, F filter)
         {
             if (filter.Id.HasValue)

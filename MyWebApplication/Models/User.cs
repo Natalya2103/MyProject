@@ -28,13 +28,13 @@ namespace ModelsDAL
         [FastSearch(FieldType = FieldType.Int)]
         public virtual int Age { get; set; }
         public virtual UserGroup UserGroup { get; set; }
+        public virtual byte[] Avatar { get; set; }
     }
 
     public class UserMap : ClassMap<User> 
     {
         public UserMap()
         {
-            //Table("TableUser");
             Id(u => u.Id).GeneratedBy.HiLo("100L"); 
             Map(u => u.FIO).Length(100);
             Map(u => u.Login).Length(30);
@@ -44,6 +44,7 @@ namespace ModelsDAL
             Map(u => u.Email);
             Map(u => u.Age);
             References(u => u.CreationAuthor).Cascade.SaveUpdate();
+            Map(u => u.Avatar).Length(int.MaxValue);
         }
     }
 }
