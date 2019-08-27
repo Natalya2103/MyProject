@@ -62,11 +62,11 @@ namespace MyWebApplication.Controllers
             userRepository.Save(user);
             return RedirectToAction("Index", "Home");
         }
-        public ActionResult List(UserFilter filter)
+        public ActionResult List(UserFilter filter, FetchOptions fetchOptions)
         {
             var model = new UserListModel
             {
-                Items = userRepository.Find(filter)
+                Items = userRepository.Find(filter, fetchOptions)
             };
             return View(model);
         }
