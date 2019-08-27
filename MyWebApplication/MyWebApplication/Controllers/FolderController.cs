@@ -18,14 +18,13 @@ namespace MyWebApplication.Controllers
         {
             this.folderRepository = folderRepository;
         }
-        // GET: Folder
-        public ActionResult Create(FolderFilter folderFilter)
+
+        public ActionResult Create(long? parent)
         {
-            var model = new FolderModel();
-            if (folderFilter.ParentFolderId != null)
+            var model = new FolderModel
             {
-                model.ParentFolderId = Convert.ToString(folderFilter.ParentFolderId);
-            }
+                ParentFolderId = parent
+            };
             return View(model);
         }
 
@@ -36,24 +35,36 @@ namespace MyWebApplication.Controllers
             {
                 return View(model);
             }
-
+            Folder parent = null;
+            if (model.ParentFolderId.HasValue)
+            {
+                parent = folderRepository.Load(model.ParentFolderId.Value);
+            }
             var folder = new Folder
             {
                 FolderName = model.FolderName,
-                ParentFolder = folderRepository.Load(Convert.ToInt64(model.ParentFolderId))
+                ParentFolder = parent,
+                CreationDate = DateTime.Now
             };
             folderRepository.Save(folder);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", new { parent = model.ParentFolderId });
         }
         
-        public ActionResult List(FolderFilter filter)
+        public ActionResult Index(long? parent)
         {
+            Folder parentFolder = null;
+            if (parent.HasValue)
+            {
+                parentFolder = folderRepository.Load(parent.Value);
+            }
             var model = new FolderListModel
             {
-                Items = folderRepository.Find(filter),
-                FolderParentId = filter.ParentFolderId != null ? filter.ParentFolderId.ToString() : ""
+                Items = folderRepository.Find(new FolderFilter { ParentFolderId = parentFolder != null ? parentFolder.Id : (long?)null}),
+                CurrentFolder = parentFolder,
+                FolderParent = parentFolder != null ? parentFolder.ParentFolder : null
             };
-            return View(model);
+            model.IsRootFolder = parent == null && model.FolderParent == null;
+            return View("List", model);
         }
     }
 }

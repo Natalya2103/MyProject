@@ -9,9 +9,10 @@ namespace MyWebApplication.Models
 {
     public class FolderListModel : EntityListModel<Folder>
     {
-        [DisplayName("Путь")]
-        public string FolderParentPath { get; set; }
+        public bool IsRootFolder { get; set; }
 
-        public string FolderParentId { get; set; }
+        public Folder FolderParent { get; set; }
+
+        public Folder CurrentFolder { get; set; }
     }
 }

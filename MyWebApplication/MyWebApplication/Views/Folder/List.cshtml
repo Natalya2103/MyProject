@@ -2,17 +2,24 @@
 @model MyWebApplication.Models.FolderListModel
 @{
     ViewBag.Title = "Список папок";
+
+    ViewBag.Title = Model.CurrentFolder != null ? Model.CurrentFolder.FolderName : "Хранилище документов";
+    var parentId = Model.CurrentFolder != null ? Model.CurrentFolder.Id : (long?)null;
 }
 
 <h2>Список папок</h2>
+
 <p>
-    @Html.LabelFor(model => model.FolderParentPath, htmlAttributes: new { @class = "control-label col-md-2" })
+    @Html.ActionLink("Добавить", "Create", new { parent = parentId })
 </p>
-<p>
-    @Html.ActionLink("Добавить", "Create", new { parentFolderId = Model.FolderParentId } )
-</p>
+
+<div style="height:20px;"></div>
+
+@Html.Partial("Grid", Model.Items, new ViewDataDictionary {
+    { "Parent", Model.FolderParent },
+    { "IsRootFolder", Model.IsRootFolder },
+})
+
 <p>
     @Html.Partial("Filter", new FolderFilter())
 </p>
-<div style="height:20px;"></div>
-@Html.Partial("Grid", Model.Items)

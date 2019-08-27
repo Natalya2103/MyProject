@@ -12,6 +12,8 @@ namespace ModelsDAL
         [FastSearch]
         public virtual string FolderName { get; set; }
         public virtual Folder ParentFolder { get; set; }
+        public virtual DateTime CreationDate { get; set; }
+        public virtual User CreationAuthor { get; set; }
     }
 
     public class FolderMap : ClassMap<Folder>
@@ -20,7 +22,9 @@ namespace ModelsDAL
         {
             Id(u => u.Id).GeneratedBy.HiLo("100L");
             Map(u => u.FolderName).Length(200);
-            References(u => u.ParentFolder);
+            References(u => u.ParentFolder).Cascade.SaveUpdate();
+            Map(u => u.CreationDate);
+            References(u => u.CreationAuthor);
         }
     }
 }

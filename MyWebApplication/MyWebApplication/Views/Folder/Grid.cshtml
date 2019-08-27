@@ -1,27 +1,56 @@
-﻿@model IEnumerable<ModelsDAL.Folder>
+﻿@using ModelsDAL
+@model IEnumerable<ModelsDAL.Folder>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.FolderName)
-        </th>
-        @*<th></th>*@
-        <th></th>
-    </tr>
+@{
+    var parent = ViewData["Parent"] as Folder;
+    var isRootFolder = Convert.ToBoolean(ViewData["IsRootFolder"] ?? true);
+}
 
-    @foreach (var item in Model)
-    {
+    <table class="table">
         <tr>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.FolderName)
-            </td>*@
-            <td>@Html.ActionLink(item.FolderName,"List", new { parentFolderId = item.Id } )</td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.FolderName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreationDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreationAuthor)
+            </th>
+            @*<th></th>*@
+            <th></th>
         </tr>
-    }
 
-</table>
+        @if (!isRootFolder)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink("\\...", "Index", new { parent = parent != null ? parent.Id : (long?)null }, null)
+                </td>
+                <td></td>
+                <td></td>
+            </tr>
+        }
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.FolderName)
+                </td>*@
+                <td>@Html.ActionLink(item.FolderName, "Index", new { parent = item.Id })</td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreationDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreationAuthor)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
