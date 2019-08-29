@@ -66,7 +66,7 @@ namespace MyWebApplication.Extensions
             {
                 return MvcHtmlString.Empty;
             }
-            return MvcHtmlString.Create($"Пользователь: {user.UserName}");
+            return MvcHtmlString.Create($"Пользователь: {user.UserName}  " + html.ActionLink("Выйти", "Logout", "Account"));
         }
     }
 }

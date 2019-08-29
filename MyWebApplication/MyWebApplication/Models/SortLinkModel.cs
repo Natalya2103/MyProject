@@ -14,5 +14,5 @@ namespace MyWebApplication.Models
         public SortDirection? SortDirection {get; set;}
         public RouteValueDictionary RouteValues { get; set; }
         public string LinkText { get; set; }
-}
+    }
 }

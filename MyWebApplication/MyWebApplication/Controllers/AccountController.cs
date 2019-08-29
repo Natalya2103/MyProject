@@ -37,5 +37,11 @@ namespace MyWebApplication.Controllers
             }
             return View(model);
         }
+
+        public ActionResult Logout()
+        {
+            SignInManager.SignOut();
+            return RedirectToAction("Index", "Home");
+        }
     }
 }
