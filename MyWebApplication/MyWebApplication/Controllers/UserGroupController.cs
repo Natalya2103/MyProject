@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace MyWebApplication.Controllers
 {
+    [Authorize]
     public class UserGroupController : Controller
     {
         private UserGroupRepository userGroupRepository;

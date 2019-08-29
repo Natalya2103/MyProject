@@ -3,15 +3,18 @@ using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using ModelsDAL.Filters;
+using Microsoft.AspNet.Identity;
 
 namespace ModelsDAL
 {
-    public class User
+    public class User: IUser<long>
     {
         public virtual long Id { get; set; }
-
         [FastSearch]
-        public virtual string Login { get; set; }
+        public virtual string UserName { get; set; }
+
+        //[FastSearch]
+        //public virtual string Login { get; set; }
 
         [FastSearch]
         public virtual string FIO { get; set; }
@@ -28,6 +31,8 @@ namespace ModelsDAL
         [FastSearch(FieldType = FieldType.Int)]
         public virtual int Age { get; set; }
         public virtual UserGroup UserGroup { get; set; }
+        //public virtual BinaryFile AvatarFile { get; set; }
+        public virtual DateTime BirthDate { get; set; }
         public virtual byte[] Avatar { get; set; }
     }
 
@@ -37,14 +42,17 @@ namespace ModelsDAL
         {
             Id(u => u.Id).GeneratedBy.HiLo("100L"); 
             Map(u => u.FIO).Length(100);
-            Map(u => u.Login).Length(30);
+            Map(u => u.UserName).Length(30);
             Map(u => u.Password).Length(500);
             References(u => u.UserGroup).Cascade.SaveUpdate();
             Map(u => u.CreationDate);
             Map(u => u.Email);
             Map(u => u.Age);
+            Map(u => u.BirthDate);
             References(u => u.CreationAuthor).Cascade.SaveUpdate();
+            //References(u => u.AvatarFile).Cascade.SaveUpdate();
             Map(u => u.Avatar).Length(int.MaxValue);
+
         }
     }
 }

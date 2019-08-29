@@ -40,6 +40,9 @@ namespace MyWebApplication.Models
         [DisplayName("Возраст")]
         public int Age { get; set; }
         //public virtual byte[] Avatar { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayName("Дата рождения")]
+        public DateTime BirthDate { get; set; }
 
         [DataType(DataType.Upload)]
         public HttpPostedFileWrapper Avatar { get; set; }

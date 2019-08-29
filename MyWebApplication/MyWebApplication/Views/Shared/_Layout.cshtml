@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using MyWebApplication.Extensions
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -23,6 +24,9 @@
                 @Html.ActionLink("Главная", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
                 @Html.ActionLink("Пользователи", "List", "User", new { area = "" }, new { @class = "navbar-brand" })
                 @Html.ActionLink("Документы", "Index", "Folder", new { area = "" }, new { @class = "navbar-brand" })
+                <a>
+                    @Html.DisplayCurrentUser()
+                </a>
             </div>
         </div>
         <div class="navbar-collapse collapse">

@@ -5,6 +5,7 @@ using FluentNHibernate.Cfg.Db;
 using Microsoft.Owin;
 using ModelsDAL;
 using ModelsDAL.Repositories;
+using ModelsDAL.Filters;
 using MyWebApplication.App_Start;
 using MyWebApplication.Controllers;
 using NHibernate;
@@ -17,6 +18,12 @@ using System.Configuration;
 using System.Reflection;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security.Cookies;
+using Microsoft.AspNetCore.Identity;
+using System.Linq;
+using System.Web;
+using Microsoft.AspNet.Identity;
 
 [assembly: OwinStartup(typeof(Startup))]
 namespace MyWebApplication.App_Start
@@ -71,7 +78,18 @@ namespace MyWebApplication.App_Start
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
             app.UseAutofacMiddleware(container);
 
-            CreateTestData(container);
+            app.CreatePerOwinContext(() =>
+                new UserManager(new IdentityStore(DependencyResolver.Current.GetService<ISession>())));
+            app.CreatePerOwinContext<SignInManager>((opt, context) =>
+                new SignInManager(context.GetUserManager<UserManager>(), context.Authentication));
+            app.UseCookieAuthentication(new CookieAuthenticationOptions
+            {
+                AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
+                LoginPath = new PathString("/Account/Login"),
+                Provider = new CookieAuthenticationProvider()
+            });
+
+            //CreateTestData(container);
         }
 
         private static void CreateTestData(IContainer container)
@@ -88,7 +106,7 @@ namespace MyWebApplication.App_Start
                 folderList.Add(folder3);
                 folderList.Add(new Folder() { FolderName = "Folder4", ParentFolder = folder3 });
                 folderList.Add(new Folder() { FolderName = "Folder5", ParentFolder = folder3 });
-                var author = new User() { Login = "1", Password = "1", FIO = "1", CreationDate = DateTime.Now, Age = 18, Email = "1@1.ru" };
+                var author = new User() { UserName = "1", Password = "1", FIO = "1", CreationDate = DateTime.Now, Age = 18, Email = "1@1.ru" };
 
 
                 var documentList = new List<Document>();

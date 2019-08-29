@@ -8,6 +8,7 @@ using MyWebApplication.Models;
 
 namespace MyWebApplication.Controllers
 {
+    //[Authorize]
     public class HomeController : Controller
     {
         public HomeController()

@@ -1,4 +1,7 @@
-﻿using ModelsDAL.Filters;
+﻿using Microsoft.AspNet.Identity;
+using ModelsDAL;
+using ModelsDAL.Filters;
+using ModelsDAL.Repositories;
 using MyWebApplication.Models;
 using System;
 using System.Collections.Generic;
@@ -43,6 +46,27 @@ namespace MyWebApplication.Extensions
                 RouteValues = routeValues,
                 LinkText = linkText
             });
+        }
+
+        public static User CurrentUser(this HtmlHelper html)
+        {
+            var principal = HttpContext.Current.User;
+            if (principal == null)
+            {
+                return null;
+            }
+            var currentUserId = principal.Identity.GetUserId<long>();
+            var userRepository = DependencyResolver.Current.GetService<UserRepository>();
+            return userRepository.Load(currentUserId);
+        }
+        public static MvcHtmlString DisplayCurrentUser(this HtmlHelper html)
+        {
+            var user = CurrentUser(html);
+            if (user == null)
+            {
+                return MvcHtmlString.Empty;
+            }
+            return MvcHtmlString.Create($"Пользователь: {user.UserName}");
         }
     }
 }

@@ -20,7 +20,7 @@ namespace ModelsDAL.Repositories
         public bool Exists(string login)
         {
             var crit = session.CreateCriteria<User>()
-                .Add(Restrictions.Eq("Login", login))
+                .Add(Restrictions.Eq("UserName", login))
                 .SetProjection(Projections.Count("Id"));
             var count = Convert.ToInt64(crit.UniqueResult());
             return count > 0;

@@ -6,7 +6,7 @@
     <tr>
         <th>
             @*@Html.DisplayNameFor(model => model.Login)*@
-            @Html.SortLink("Логин", "Login", "List", "User", null)
+            @Html.SortLink("Логин", "UserName", "List", "User", null)
         </th>
         <th>
             @*@Html.DisplayNameFor(model => model.FIO)*@
@@ -34,7 +34,7 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Login)
+                @Html.DisplayFor(modelItem => item.UserName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.FIO)

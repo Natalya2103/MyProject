@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace MyWebApplication.Controllers
 {
+    [Authorize]
     public class FolderController : Controller
     {
         private FolderRepository folderRepository;
