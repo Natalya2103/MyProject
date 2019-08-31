@@ -21,7 +21,7 @@ namespace MyWebApplication.Controllers
         {
             var model = new HomeModel 
             { 
-                Title = "Крутое приложение!",
+                Title = "Добро пожаловать!",
                 Time = DateTime.Now
             };
             return View(model);

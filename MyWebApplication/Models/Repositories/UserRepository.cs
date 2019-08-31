@@ -50,13 +50,13 @@ namespace ModelsDAL.Repositories
             }
             
             if (filter.CreationDate.From.HasValue)
-             {
-                 crit.Add(Restrictions.Ge("CreationDate", filter.CreationDate.From.Value));
-             }
-             if (filter.CreationDate.To.HasValue)
-             {
-                 crit.Add(Restrictions.Le("CreationDate", filter.CreationDate.To.Value));
-             }
+            {
+                crit.Add(Restrictions.Ge("CreationDate", filter.CreationDate.From.Value));
+            }
+            if (filter.CreationDate.To.HasValue)
+            {
+                crit.Add(Restrictions.Le("CreationDate", filter.CreationDate.To.Value));
+            }
 
             if (filter.Age.From.HasValue)
             {

@@ -38,7 +38,7 @@ namespace MyWebApplication.Controllers
                GroupName = model.GroupName
             };
             userGroupRepository.Save(userGroup);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("List");
         }
 
         public ActionResult List(UserGroupFilter filter, FetchOptions fetchOptions)
