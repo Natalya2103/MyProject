@@ -41,11 +41,11 @@ namespace MyWebApplication.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public ActionResult List(UserGroupFilter filter)
+        public ActionResult List(UserGroupFilter filter, FetchOptions fetchOptions)
         {
             var model = new UserGroupListModel
             {
-                Items = userGroupRepository.Find(filter)
+                Items = userGroupRepository.Find(filter, fetchOptions)
             };
             return View(model);
         }

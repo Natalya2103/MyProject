@@ -1,4 +1,5 @@
 ﻿using FluentNHibernate.Mapping;
+using ModelsDAL.Filters;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,6 +9,7 @@ namespace ModelsDAL
     public class UserGroup
     {
         public virtual long Id { get; set; }
+        [FastSearch]
         public virtual string GroupName { get; set; }
        // public User[] Users { get; set; }
         public virtual IList<User> Users { get; set; }

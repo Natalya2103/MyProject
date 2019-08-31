@@ -23,6 +23,7 @@
                 @Html.SortLink("Тип", "DocumentType", "Index", "Folder", null)
             </th>
             <th></th>
+            <th></th>
         </tr>
 
         @if (!isRootFolder)
@@ -31,6 +32,7 @@
                 <td>
                     @Html.ActionLink("\\...", "Index", new { parent = parent != null ? parent.Id : (long?)null }, null)
                 </td>
+                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -52,6 +54,7 @@
                     {
                         @Html.ActionLink(item.FolderName, "Index", new { parent = item.Id });
                     }
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.CreationDate)
                 </td>
@@ -64,9 +67,7 @@
                 <td>
                     @if (item as Document != null)
                     {
-                        @*<img src="@Url.Action("GetData", new { id = item.Id })" style="width:24px;" />*@
                         @Html.ActionLink("Скачать", "Download", "BinaryFile", new { id = (item as Document).DocumentFile.Id }, null)
-                        @*<img src="@Url.Action("Download", "BinaryFile", new { id = (item as Document).DocumentFile.Id })" style="width:24px;" />*@
                     }
                 </td>
                 <td>

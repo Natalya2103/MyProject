@@ -81,11 +81,11 @@ namespace MyWebApplication.Controllers
             return View(model);
         }
 
-        public ActionResult List(UserFilter filter)
+        public ActionResult List(UserFilter filter, FetchOptions fetchOptions)
         {
             var model = new UserListModel
             {
-                Items = userRepository.Find(filter)
+                Items = userRepository.Find(filter, fetchOptions)
             };
             return View(model);
         }
