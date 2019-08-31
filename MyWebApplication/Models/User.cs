@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 
 namespace ModelsDAL
 {
+    //[Filter(Type = typeof(UserFilter))]
     public class User: IUser<long>
     {
         public virtual long Id { get; set; }
@@ -33,7 +34,7 @@ namespace ModelsDAL
         public virtual UserGroup UserGroup { get; set; }
         //public virtual BinaryFile AvatarFile { get; set; }
         public virtual DateTime BirthDate { get; set; }
-        public virtual byte[] Avatar { get; set; }
+        public virtual BinaryFile AvatarFile { get; set; }
     }
 
     public class UserMap : ClassMap<User> 
@@ -50,8 +51,8 @@ namespace ModelsDAL
             Map(u => u.Age);
             Map(u => u.BirthDate);
             References(u => u.CreationAuthor).Cascade.SaveUpdate();
-            //References(u => u.AvatarFile).Cascade.SaveUpdate();
-            Map(u => u.Avatar).Length(int.MaxValue);
+            References(u => u.AvatarFile).Cascade.SaveUpdate();
+           // Map(u => u.Avatar).Length(int.MaxValue);
 
         }
     }

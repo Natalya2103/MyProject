@@ -1,50 +1,47 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.IO;
-//using System.Linq;
-//using System.Web;
-//using ModelsDAL;
-//using ModelsDAL.Repositories;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Web;
+using ModelsDAL;
+using ModelsDAL.Repositories;
 
-//namespace MyWebApplication.Files
-//{
-//    public class DbFileProvider: IFileProvider
-//    {
-//        private BinaryFileContentRepository binaryFileContentRepository
-//        {
-//            this.binaryFileContentRepository = binaryFileContentRepository;
-//        }
-//        public string Name => "Database";
+namespace MyWebApplication.Files
+{
+    public class DbFileProvider : IFileProvider
+    {
+        private BinaryFileContentRepository binaryFileContentRepository;
+        public DbFileProvider(BinaryFileContentRepository binaryFileContentRepository)
+        {
+            this.binaryFileContentRepository = binaryFileContentRepository;
+        }
+        public string Name => "Database";
 
-//        string IFileProvider.Name { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
-//        public Stream Load(BinaryFile file)
-//        {
-//            var content = binaryFileContentRepository.GetByBinaryFile(file);
-//            if (content == null || content.Content == null)
-//            {
-//                return null
-//            }
-//            var memoryStream = new MemoryStream();
-//            memoryStream.Write(content.Content, 0, content.Content.Length);
-//            return memoryStream;
-//        }
-//        public Stream Save(BinaryFile file, Stream content)
-//        {
-//            var contentf = new BinaryFileContent
-//            {
-//                //
-//            }
-//        }
-
-//        void IFileProvider.Save(BinaryFile file, Stream content)
-//        {
-//            throw new NotImplementedException();
-//        }
-
-//        Stream IFileProvider.Load(BinaryFile file)
-//        {
-//            throw new NotImplementedException();
-//        }
-//    }
-//}
+        public Stream Load(BinaryFile file)
+        {
+            var content = binaryFileContentRepository.GetByBinaryFile(file);
+            if (content == null || content.Content == null)
+            {
+                return null;
+            }
+            var path = Path.GetTempFileName();
+            var fileName = Path.GetFileNameWithoutExtension(path);
+            var extension = Path.GetExtension(file.Name);
+            var fullPath = Path.Combine(Path.GetDirectoryName(path), $"{fileName}{extension}");
+            using (var stream = new FileStream(fullPath, FileMode.CreateNew))
+            {
+                stream.Write(content.Content, 0, content.Content.Length);
+            }
+            return new FileStream(fullPath, FileMode.Open);
+        }
+        public void Save(BinaryFile file, Stream content)
+        {
+            var contentF = new BinaryFileContent
+            {
+                BinaryFile = file,
+                Content = content.ToByteArray()
+            };
+            binaryFileContentRepository.Save(contentF);
+        }
+    }
+}

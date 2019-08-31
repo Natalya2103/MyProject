@@ -332,6 +332,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BinaryFileController.cs" />
     <Compile Include="Controllers\EntityController.cs" />
     <Compile Include="Controllers\FolderController.cs" />
@@ -339,6 +340,8 @@
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\UserGroupController.cs" />
     <Compile Include="Extensions\HtmlExtensions.cs" />
+    <Compile Include="Files\BinaryFileModelBinder.cs" />
+    <Compile Include="Files\BinaryFileWrapper.cs" />
     <Compile Include="Files\DbFileProvider.cs" />
     <Compile Include="Files\IFileProvider.cs" />
     <Compile Include="Files\LocalFileProvider.cs" />
@@ -354,6 +357,7 @@
     <Compile Include="Models\HomeModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\SortLinkModel.cs" />
+    <Compile Include="Models\UserGroupListModel.cs" />
     <Compile Include="Models\UserGroupModel.cs" />
     <Compile Include="Models\UserListModel.cs" />
     <Compile Include="Models\UserModel.cs" />
@@ -393,6 +397,12 @@
     <Content Include="Views\Folder\Filter.cshtml" />
     <Content Include="Views\Shared\SortLink.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\BinaryFileWrapper.cshtml" />
+    <Content Include="Views\User\Details.cshtml" />
+    <Content Include="Views\UserGroup\List.cshtml" />
+    <Content Include="Views\UserGroup\Grid.cshtml" />
+    <Content Include="Views\UserGroup\Filter.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\BinaryFileWrapper.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -403,7 +413,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\images\" />
-    <Folder Include="NewFolder1\" />
     <Folder Include="Views\Entity\" />
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,5 @@
 ﻿using ModelsDAL;
+using ModelsDAL.Filters;
 using ModelsDAL.Repositories;
 using MyWebApplication.Models;
 using System;
@@ -38,6 +39,15 @@ namespace MyWebApplication.Controllers
             };
             userGroupRepository.Save(userGroup);
             return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult List(UserGroupFilter filter)
+        {
+            var model = new UserGroupListModel
+            {
+                Items = userGroupRepository.Find(filter)
+            };
+            return View(model);
         }
     }
 }

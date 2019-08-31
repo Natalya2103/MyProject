@@ -14,6 +14,9 @@
 </p>
 
 <div style="height:20px;"></div>
+<p>
+    @Html.Partial("Filter", new FolderFilter())
+</p>
 
 @Html.Partial("Grid", Model.Items, new ViewDataDictionary {
     { "Parent", Model.FolderParent },
@@ -21,6 +24,4 @@
     { "CurrentFolderId", Model.CurrentFolder != null ? Model.CurrentFolder.Id : (long?)null }
 })
 
-<p>
-    @Html.Partial("Filter", new FolderFilter())
-</p>
+

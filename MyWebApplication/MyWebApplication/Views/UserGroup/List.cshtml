@@ -1,0 +1,16 @@
+﻿@using ModelsDAL.Filters
+@model MyWebApplication.Models.UserGroupListModel
+@{
+    ViewBag.Title = "Список групп пользователей";
+}
+
+<h2>Список групп пользователей</h2>
+
+<p>
+    @Html.ActionLink("Добавить", "Create")
+</p>
+<p>
+    @Html.Partial("Filter", new UserGroupFilter())
+</p>
+<div style="height:20px;"></div>
+@Html.Partial("Grid", Model.Items)

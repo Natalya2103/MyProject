@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ModelsDAL.Filters
 {
-    public class BinaryFileContent: BaseFilter
+    public class BinaryFileContentFilter: BaseFilter
     {
     }
 }

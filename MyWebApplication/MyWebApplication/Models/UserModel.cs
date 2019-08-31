@@ -1,4 +1,5 @@
 ﻿using ModelsDAL;
+using MyWebApplication.Files;
 using MyWebApplication.Validation;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,8 @@ namespace MyWebApplication.Models
 
         [Login]
         [Required]
-        public  string Login { get; set; }
+        [DisplayName("Логин")]
+        public  string UserName { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
@@ -45,6 +47,10 @@ namespace MyWebApplication.Models
         public DateTime BirthDate { get; set; }
 
         [DataType(DataType.Upload)]
-        public HttpPostedFileWrapper Avatar { get; set; }
+        [DisplayName("Фото")]
+        public BinaryFileWrapper Avatar { get; set; }
+
+        [DisplayName("Автор")]
+        public User CreationAuthor { get; set; }
     }
 }

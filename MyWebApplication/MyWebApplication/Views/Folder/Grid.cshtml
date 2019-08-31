@@ -17,9 +17,11 @@
                 @Html.SortLink("Дата создания", "CreationDate", "Index", "Folder", null)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CreationAuthor)
+                @Html.SortLink("Автор", "CreationAuthor", "Index", "Folder", null)
             </th>
-            @*<th></th>*@
+            <th>
+                @Html.SortLink("Тип", "DocumentType", "Index", "Folder", null)
+            </th>
             <th></th>
         </tr>
 
@@ -31,6 +33,8 @@
                 </td>
                 <td></td>
                 <td></td>
+                <td></td>
+                <td></td>
             </tr>
         }
 
@@ -40,12 +44,22 @@
                 @*<td>
                     @Html.DisplayFor(modelItem => item.FolderName)
                 </td>*@
-                <td>@Html.ActionLink(item.FolderName, "Index", new { parent = item.Id })</td>
+                <td>@if (item is Document)
+                    {
+                        @Html.DisplayFor(modelItem => item.FolderName);
+                    }
+                    else
+                    {
+                        @Html.ActionLink(item.FolderName, "Index", new { parent = item.Id });
+                    }
                 <td>
                     @Html.DisplayFor(modelItem => item.CreationDate)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.CreationAuthor)
+                </td>
+                <td>
+                    @Html.Encode(item is Document ? (item as Document).DocumentType : "") 
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |

@@ -18,7 +18,7 @@ namespace ModelsDAL
         {
             Id(f => f.Id).GeneratedBy.HiLo("100");
             Map(f => f.Name).Length(255);
-            Map(f => f.ContentType).Length(255);
+            Map(f => f.ContentType).Length(50);
             Map(f => f.Length).Length(255);
         }
     }

@@ -9,7 +9,7 @@ namespace MyWebApplication.Files
 {
     public interface IFileProvider
     { 
-        string Name { get; set; }
+        string Name { get; }
         void Save(BinaryFile file, Stream content);
         Stream Load(BinaryFile file);
     }

@@ -15,7 +15,7 @@ using System.Web.Mvc;
 namespace MyWebApplication.Controllers
 {
     [Authorize]
-    public class UserController : Controller
+    public class UserController : BaseController
     {
         private UserRepository userRepository;
         private UserGroupRepository userGroupRepository;
@@ -55,21 +55,35 @@ namespace MyWebApplication.Controllers
             {
                 FIO = model.FIO,
                 Age = model.Age,
-                UserName = model.Login,
+                UserName = model.UserName,
                 Email = model.Email,
                 CreationDate = DateTime.Now,
                 BirthDate = model.BirthDate,
+                CreationAuthor = GetCurrentUser(),
                 UserGroup = userGroupRepository.Get(Convert.ToInt64(model.UserGroup)) ?? null,
-                Avatar = model.Avatar != null && model.Avatar.InputStream != null ?
-                        model.Avatar.InputStream.ToByteArray() :
-                        null
+                AvatarFile = model.Avatar != null ? model.Avatar.BinaryFile : null
             };
             var res = UserManager.CreateAsync(user, model.Password);
             if (res.Result == IdentityResult.Success)
             {
+                if (model.Avatar != null)
+                {
+                    GetFileProvider().Save(model.Avatar.BinaryFile, model.Avatar.PostedFile.InputStream);
+                }
                 return RedirectToAction("List");
             }
             return ReturnView(model);
+        }
+
+        private User GetCurrentUser()
+        {
+            var principal = HttpContext.User;
+            if (principal == null)
+            {
+                return null;
+            }
+            var currentUserId = principal.Identity.GetUserId<long>();
+            return userRepository.Load(currentUserId);
         }
 
         private ActionResult ReturnView(UserModel model)
@@ -87,10 +101,24 @@ namespace MyWebApplication.Controllers
             return View(model);
         }
 
-        public ActionResult GetAvatar(long id)
+        public ActionResult Details(long id)
         {
             var user = userRepository.Load(id);
-            return File(user.Avatar, "application/octet-stream", $"{user.UserName}.jpeg");
+            var model = new UserModel
+            {
+                Entity = user,
+                Age = user.Age,
+                Avatar = new BinaryFileWrapper
+                {
+                    BinaryFile = user.AvatarFile
+                },
+                BirthDate = user.BirthDate,
+                Email = user.Email,
+                FIO = user.FIO,
+                UserName = user.UserName,
+                CreationAuthor = user.CreationAuthor
+            };
+            return View(model);
         }
     }
 }

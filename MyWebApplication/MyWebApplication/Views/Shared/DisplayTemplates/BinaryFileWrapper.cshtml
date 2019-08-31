@@ -1,0 +1,18 @@
+﻿@model MyWebApplication.Files.BinaryFileWrapper
+
+@if (Model != null && Model.BinaryFile != null)
+{
+    var fileName = !string.IsNullOrEmpty(Model.BinaryFile.Name) ? @Model.BinaryFile.Name : "Без названия";
+    <div>
+        @if (Model.BinaryFile.Id > 0)
+        {
+            <a href="@Url.Action("Download", "BinaryFile", new { id = Model.BinaryFile.Id })">
+                @fileName
+            </a>
+        }
+        else
+        {
+            @fileName
+        }
+    </div>
+}

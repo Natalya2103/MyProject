@@ -6,6 +6,7 @@ using NHibernate;
 
 namespace ModelsDAL.Repositories
 {
+    [Repository]
     public class BinaryFileRepository : Repository<BinaryFile, BinaryFileFilter>
     {
         public BinaryFileRepository(ISession session) : base(session)
