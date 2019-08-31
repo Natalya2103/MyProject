@@ -1,0 +1,37 @@
+﻿@model MyWebApplication.Models.ReportModel
+
+@{
+    ViewBag.Title = "Отчет";
+}
+
+<h2>Отчет</h2>
+
+<div>
+    
+    <table class="table">
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.FolderCount)</td>
+            <td>@Html.DisplayFor(model => model.FolderCount)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.DocumentCount)</td>
+            <td>@Html.DisplayFor(model => model.DocumentCount)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.DocumentTotalSize)</td>
+            <td>@Html.DisplayFor(model => model.DocumentTotalSize)</td>
+        </tr>
+    </table>
+        @*<dl class="dl-horizontal" width>
+            <dt> @Html.DisplayNameFor(model => model.FolderCount) </dt>
+            <dd> @Html.DisplayFor(model => model.FolderCount) </dd>
+            <dt> @Html.DisplayNameFor(model => model.DocumentCount) </dt>
+            <dd> @Html.DisplayFor(model => model.DocumentCount) </dd>
+            <dt> @Html.DisplayNameFor(model => model.DocumentTotalSize) </dt>
+            <dd> @Html.DisplayFor(model => model.DocumentTotalSize) </dd>
+        </dl>*@
+</div>
+
+<div>
+    @Html.ActionLink("Back to Home", "Index", "Home")
+</div>

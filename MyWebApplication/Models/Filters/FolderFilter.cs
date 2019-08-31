@@ -9,5 +9,7 @@ namespace ModelsDAL.Filters
         public string FolderName { get; set; }
 
         public long? ParentFolderId { get; set; }
+
+        public Range<DateTime> CreationDate { get; set; }
     }
 }

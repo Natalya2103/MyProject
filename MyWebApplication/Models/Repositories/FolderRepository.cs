@@ -40,5 +40,22 @@ namespace ModelsDAL.Repositories
                 crit.Add(Restrictions.IsNull("ParentFolder.Id"));
             }
         }
+
+        public virtual IList<Folder> FindAll (FolderFilter filter)
+        {
+            var crit = session.CreateCriteria<Folder>();
+            if (filter != null)
+            {
+                if (filter.CreationDate.From.HasValue)
+                {
+                    crit.Add(Restrictions.Ge("CreationDate", filter.CreationDate.From.Value));
+                }
+                if (filter.CreationDate.To.HasValue)
+                {
+                    crit.Add(Restrictions.Le("CreationDate", filter.CreationDate.To.Value));
+                }
+            }
+            return crit.List<Folder>();
+        }
     }
 }

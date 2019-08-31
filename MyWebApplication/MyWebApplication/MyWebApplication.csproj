@@ -337,6 +337,7 @@
     <Compile Include="Controllers\EntityController.cs" />
     <Compile Include="Controllers\FolderController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\UserGroupController.cs" />
     <Compile Include="Extensions\HtmlExtensions.cs" />
@@ -357,6 +358,7 @@
     <Compile Include="Models\FolderModel.cs" />
     <Compile Include="Models\HomeModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
+    <Compile Include="Models\ReportModel.cs" />
     <Compile Include="Models\SortLinkModel.cs" />
     <Compile Include="Models\UserGroupListModel.cs" />
     <Compile Include="Models\UserGroupModel.cs" />
@@ -405,6 +407,7 @@
     <Content Include="Views\UserGroup\Filter.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\BinaryFileWrapper.cshtml" />
     <Content Include="Views\Folder\CreateDocument.cshtml" />
+    <Content Include="Views\Report\Statistics.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
