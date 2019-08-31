@@ -350,6 +350,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="IdentityStore.cs" />
+    <Compile Include="Models\DocumentModel.cs" />
     <Compile Include="Models\EntityListModel.cs" />
     <Compile Include="Models\EntityModel.cs" />
     <Compile Include="Models\FolderListModel.cs" />
@@ -403,6 +404,7 @@
     <Content Include="Views\UserGroup\Grid.cshtml" />
     <Content Include="Views\UserGroup\Filter.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\BinaryFileWrapper.cshtml" />
+    <Content Include="Views\Folder\CreateDocument.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -413,6 +415,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\images\" />
+    <Folder Include="Views\Document\" />
     <Folder Include="Views\Entity\" />
   </ItemGroup>
   <ItemGroup>

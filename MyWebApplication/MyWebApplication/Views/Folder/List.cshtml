@@ -10,7 +10,10 @@
 <h2>Список папок</h2>
 
 <p>
-    @Html.ActionLink("Добавить", "Create", new { parent = parentId })
+    @Html.ActionLink("Добавить папку", "Create", new { parent = parentId })
+</p>
+<p>
+    @Html.ActionLink("Добавить документ", "CreateDocument", new { parent = parentId })
 </p>
 
 <div style="height:20px;"></div>

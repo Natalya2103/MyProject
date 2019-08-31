@@ -25,7 +25,7 @@ namespace MyWebApplication.Controllers
             get { return HttpContext.GetOwinContext().GetUserManager<UserManager>(); }
         }
 
-        public UserController(UserRepository userRepository, UserGroupRepository userGroupRepository)
+        public UserController(UserRepository userRepository, UserGroupRepository userGroupRepository): base()
         {
             this.userRepository = userRepository;
             this.userGroupRepository = userGroupRepository;
@@ -73,17 +73,6 @@ namespace MyWebApplication.Controllers
                 return RedirectToAction("List");
             }
             return ReturnView(model);
-        }
-
-        private User GetCurrentUser()
-        {
-            var principal = HttpContext.User;
-            if (principal == null)
-            {
-                return null;
-            }
-            var currentUserId = principal.Identity.GetUserId<long>();
-            return userRepository.Load(currentUserId);
         }
 
         private ActionResult ReturnView(UserModel model)

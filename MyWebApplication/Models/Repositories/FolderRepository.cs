@@ -14,18 +14,7 @@ namespace ModelsDAL.Repositories
             : base(session)
         {
         }
-        //public IList<Folder> GetFolders(long? parent)
-        //{
-        //    var crit = session.CreateCriteria<Folder>();
-        //    if (parent.HasValue)
-        //    {
-        //        crit.Add(Restrictions.Eq("Parent", parent.Value));
-        //    }
-        //    else
-        //    {
-        //        crit.Add(Restrictions.IsNull("Parent"));
-        //    }
-        //}
+
         public bool Exists(string folderName)
         {
             var crit = session.CreateCriteria<Folder>()

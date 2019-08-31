@@ -55,8 +55,8 @@
     <td>
         @if (item.AvatarFile != null)
         {
-            <img src="@Url.Action("GetAvatar", new { id = item.Id })" style="width:24px;" />
-            @Html.ActionLink("Скачать", "GetAvatar", new { id = item.Id }, null)
+            @*<img src="@Url.Action("GetAvatar", new { id = item.Id })" style="width:24px;" />*@
+            @Html.ActionLink("Скачать", "Download", "BinaryFile", new { id = item.Id }, null)
             <img src="@Url.Action("Download", "BinaryFile", new { id = item.AvatarFile.Id })" style="width:24px;" />
         }
     </td>

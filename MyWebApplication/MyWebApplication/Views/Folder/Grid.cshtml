@@ -56,10 +56,18 @@
                     @Html.DisplayFor(modelItem => item.CreationDate)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CreationAuthor)
+                    @Html.DisplayFor(modelItem => item.CreationAuthor.UserName)
                 </td>
                 <td>
                     @Html.Encode(item is Document ? (item as Document).DocumentType : "") 
+                </td>
+                <td>
+                    @if (item as Document != null)
+                    {
+                        @*<img src="@Url.Action("GetData", new { id = item.Id })" style="width:24px;" />*@
+                        @Html.ActionLink("Скачать", "Download", "BinaryFile", new { id = (item as Document).DocumentFile.Id }, null)
+                        @*<img src="@Url.Action("Download", "BinaryFile", new { id = (item as Document).DocumentFile.Id })" style="width:24px;" />*@
+                    }
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |

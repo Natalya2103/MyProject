@@ -1,4 +1,7 @@
-﻿using MyWebApplication.Files;
+﻿using Microsoft.AspNet.Identity;
+using ModelsDAL;
+using ModelsDAL.Repositories;
+using MyWebApplication.Files;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -12,6 +15,7 @@ namespace MyWebApplication.Controllers
     {
         public IFileProvider[] FileProvider { get; set; }
 
+        protected UserRepository userRepository = DependencyResolver.Current.GetService<UserRepository>();
         protected IFileProvider GetFileProvider()
         {
             var key = ConfigurationManager.AppSettings["FileProvider"];
@@ -26,6 +30,17 @@ namespace MyWebApplication.Controllers
                 throw new Exception("Не задан провайдер для хранения файлов");
             }
             return fileProvider;
+        }
+
+        protected User GetCurrentUser()
+        {
+            var principal = HttpContext.User;
+            if (principal == null)
+            {
+                return null;
+            }
+            var currentUserId = principal.Identity.GetUserId<long>();
+            return userRepository.Load(currentUserId);
         }
     }
 }

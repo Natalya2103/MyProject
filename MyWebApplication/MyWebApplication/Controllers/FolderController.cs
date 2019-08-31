@@ -7,11 +7,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.IO;
 
 namespace MyWebApplication.Controllers
 {
     [Authorize]
-    public class FolderController : Controller
+    public class FolderController : BaseController
     {
         private FolderRepository folderRepository;
 
@@ -66,6 +67,44 @@ namespace MyWebApplication.Controllers
             };
             model.IsRootFolder = parent == null && model.FolderParent == null;
             return View("List", model);
+        }
+
+        public ActionResult CreateDocument(long? parent)
+        {
+            var model = new DocumentModel
+            {
+                ParentFolderId = parent
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult CreateDocument(DocumentModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            Folder parent = null;
+            if (model.ParentFolderId.HasValue)
+            {
+                parent = folderRepository.Load(model.ParentFolderId.Value);
+            }
+            var folder = new Document
+            {
+                FolderName = model.DocumentName,
+                ParentFolder = parent,
+                CreationDate = DateTime.Now,
+                DocumentFile = model.Data != null ? model.Data.BinaryFile : null,
+                CreationAuthor = GetCurrentUser(),
+                DocumentType = model.Data != null ? Path.GetExtension(model.Data.PostedFile.FileName) : null
+            };
+            if (model.Data != null)
+            {
+                GetFileProvider().Save(model.Data.BinaryFile, model.Data.PostedFile.InputStream);
+            }
+            folderRepository.Save(folder);
+            return RedirectToAction("Index", new { parent = model.ParentFolderId });
         }
     }
 }
